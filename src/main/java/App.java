@@ -1,18 +1,28 @@
-// import java.util.HashMap;
-// import spark.ModelAndView;
-// import spark.template.velocity.VelocityTemplateEngine;
-// import static spark.Spark.*;
-//
-// public class App {
-//   public static void main(String[] args) {
-//     staticFileLocation("/public");
-//     String layout = "templates/layout.vtl";
-//
-//     get("/", (request, response) -> {
-//       HashMap model = new HashMap();
-//       model.put("template", "templates/input.vtl");
-//       return new ModelAndView(model, layout);
-//     }, new VelocityTemplateEngine());
+import java.util.HashMap;
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.*;
+
+public class App {
+  public static void main(String[] args) {
+    staticFileLocation("/public");
+    String layout = "templates/layout.vtl";
+
+    get("/", (request, response) -> {
+      HashMap model = new HashMap();
+      model.put("template", "templates/input.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/books", (request,response) -> {
+      HashMap model = new HashMap();
+
+
+      model.put("titles", Title.all());
+      model.put("authors", Author.all());
+      model.put("template", "tmplates/books.vtl")
+
+    })
 //
 //     get("/result", (request, response) -> {
 //       String textInput = request.queryParams("textInput");
@@ -29,5 +39,5 @@
 //   }
 //
 //   //public static 'Returntype' 'FuncName' (Paramtype param) {}  //first business logic function
-//
-// }
+
+}
