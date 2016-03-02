@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="PatronTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-02T22:14:05" hostname="epicodus-59.local" time="0.195">
+<testsuite name="PatronTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-02T23:26:46" hostname="epicodus-59.local" time="0.126">
   <properties/>
-  <testcase name="updateDueDate_updatesDueDateInDatabase" classname="PatronTest" time="0.089"/>
+  <testcase name="updateDueDate_updatesDueDateInDatabase" classname="PatronTest" time="0.019"/>
   <testcase name="deletePatron_deletePatronObject" classname="PatronTest" time="0.017"/>
   <testcase name="find_locatesAllInstancesOfPatronInDatabaseUsingID" classname="PatronTest" time="0.014"/>
-  <testcase name="all_emptyAtFirst" classname="PatronTest" time="0.008"/>
-  <testcase name="updateIdTitleAuthor_updatesIdTitleAuthorInDatabase" classname="PatronTest" time="0.018"/>
+  <testcase name="all_emptyAtFirst" classname="PatronTest" time="0.009"/>
+  <testcase name="updateIdTitleAuthor_updatesIdTitleAuthorInDatabase" classname="PatronTest" time="0.017"/>
   <testcase name="updateName_updatesNameInDatabase" classname="PatronTest" time="0.017"/>
-  <testcase name="equals_returnsTrueIfPatronsAreTheSame" classname="PatronTest" time="0.005"/>
-  <testcase name="save_addsInstaceOfPatronToDatabase" classname="PatronTest" time="0.013"/>
-  <testcase name="save_assignsIdToObject" classname="PatronTest" time="0.013"/>
+  <testcase name="equals_returnsTrueIfPatronsAreTheSame" classname="PatronTest" time="0.004"/>
+  <testcase name="save_addsInstaceOfPatronToDatabase" classname="PatronTest" time="0.014"/>
+  <testcase name="save_assignsIdToObject" classname="PatronTest" time="0.012"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

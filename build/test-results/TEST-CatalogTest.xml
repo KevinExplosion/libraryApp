@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CatalogTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-03-02T22:14:05" hostname="epicodus-59.local" time="0.108">
+<testsuite name="CatalogTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-03-02T23:26:45" hostname="epicodus-59.local" time="0.111">
   <properties/>
-  <testcase name="save_addsInstaceOfCatalogToDatabase" classname="CatalogTest" time="0.014"/>
-  <testcase name="find_locatesAllInstancesOfCatalogInDatabaseUsingID" classname="CatalogTest" time="0.014"/>
+  <testcase name="save_addsInstaceOfCatalogToDatabase" classname="CatalogTest" time="0.015"/>
+  <testcase name="find_locatesAllInstancesOfCatalogInDatabaseUsingID" classname="CatalogTest" time="0.013"/>
   <testcase name="deleteCatalog_deleteCatalogObject" classname="CatalogTest" time="0.017"/>
   <testcase name="all_emptyAtFirst" classname="CatalogTest" time="0.008"/>
-  <testcase name="updateIdTitleAuthor_updatesIdTitleAuthorInDatabase" classname="CatalogTest" time="0.018"/>
-  <testcase name="updateCopies_updatesCopiesInDatabase" classname="CatalogTest" time="0.017"/>
+  <testcase name="updateIdTitleAuthor_updatesIdTitleAuthorInDatabase" classname="CatalogTest" time="0.017"/>
+  <testcase name="updateCopies_updatesCopiesInDatabase" classname="CatalogTest" time="0.019"/>
   <testcase name="save_assignsIdToObject" classname="CatalogTest" time="0.014"/>
   <testcase name="equals_returnsTrueIfCatalogsAreTheSame" classname="CatalogTest" time="0.005"/>
   <system-out><![CDATA[]]></system-out>

@@ -68,6 +68,7 @@ public class TitleTest {
     newAuthor.save();
 
     newTitle.addAuthor(newAuthor);
+    Author savedAuthor = newTitle.getAuthors().get(0);
     assertTrue(newAuthor.equals(savedAuthor));
   }
 
