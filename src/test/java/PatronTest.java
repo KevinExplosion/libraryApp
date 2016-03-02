@@ -14,8 +14,24 @@ public class PatronTest {
 
   @Test
   public void equals_returnsTrueIfPatronsAreTheSame() {
-    Patron firstPatron = new Patron("3/2/2016", 2);
-    Patron secondPatron = new Patron("3/2/2016", 2);
+    Patron firstPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    Patron secondPatron = new Patron("Bob Smith", "3/2/2016", 2);
     assertTrue(firstPatron.equals(secondPatron));
+  }
+
+  @Test
+  public void save_addsInstaceOfPatronToDatabase() {
+    Patron newPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    newPatron.save();
+    Patron savedPatron = Patron.all().get(0);
+    assertTrue(newPatron.equals(savedPatron));
+  }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Patron newPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    newPatron.save();
+    Patron savedPatron = Patron.all().get(0);
+    assertEquals(newPatron.getId(), savedPatron.getId());
   }
 }

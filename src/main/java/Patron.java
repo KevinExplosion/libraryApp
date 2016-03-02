@@ -3,8 +3,17 @@ import java.util.List;
 
 public class Patron {
   private int id;
+  private String patron_name;
   private String due_date;
   private int id_title_author;
+
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return patron_name;
+  }
 
   public String getDueDate() {
     return due_date;
@@ -14,13 +23,13 @@ public class Patron {
     return id_title_author;
   }
 
-  public Patron (String due_date, int id_title_author) {
+  public Patron (String patron_name, String due_date, int id_title_author) {
     this.due_date = due_date;
     this.id_title_author = id_title_author;
   }
 
   public static List<Patron> all() {
-    String sql = "SELECT id, due_date, id_title_author FROM patron";
+    String sql = "SELECT id, patron_name, due_date, id_title_author FROM patron";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Patron.class);
     }
@@ -34,6 +43,18 @@ public class Patron {
       Patron newPatron = (Patron) otherPatron;
       return this.getDueDate().equals(newPatron.getDueDate()) &&
              this.getIdTitleAuthor() == newPatron.getIdTitleAuthor();
+    }
+  }
+
+  public void save() {
+    String sql = "INSERT INTO patron (patron_name, due_date, id_title_author) VALUES (:patron_name, :due_date, :id_title_author)";
+    try (Connection con = DB.sql2o.open()) {
+      this.id = (int) con.createQuery(sql, true)
+          .addParameter("patron_name", patron_name)
+          .addParameter("due_date", due_date)
+          .addParameter("id_title_author", id_title_author)
+          .executeUpdate()
+          .getKey();
     }
   }
 }
