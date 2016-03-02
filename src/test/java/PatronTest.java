@@ -67,5 +67,13 @@ public class PatronTest {
     assertEquals(Patron.all().get(0).getIdTitleAuthor(), 3);
   }
 
+  @Test
+  public void deletePatron_deletePatronObject() {
+    Patron newPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    newPatron.save();
+    newPatron.delete();
+    assertEquals(Patron.all().size(), 0);
+  }
+
 
 }

@@ -98,4 +98,12 @@ public class Patron {
     }
   }
 
+  public void delete() {
+    String sql = "DELETE FROM patron WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+       .addParameter("id", id)
+       .executeUpdate();
+    }
+  }
 }
