@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="PatronTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-02T19:38:54" hostname="epicodus-59.local" time="0.131">
+<testsuite name="PatronTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-02T22:00:41" hostname="epicodus-59.local" time="0.128">
   <properties/>
   <testcase name="updateDueDate_updatesDueDateInDatabase" classname="PatronTest" time="0.019"/>
-  <testcase name="deletePatron_deletePatronObject" classname="PatronTest" time="0.02"/>
+  <testcase name="deletePatron_deletePatronObject" classname="PatronTest" time="0.017"/>
   <testcase name="find_locatesAllInstancesOfPatronInDatabaseUsingID" classname="PatronTest" time="0.014"/>
   <testcase name="all_emptyAtFirst" classname="PatronTest" time="0.01"/>
   <testcase name="updateIdTitleAuthor_updatesIdTitleAuthorInDatabase" classname="PatronTest" time="0.019"/>
