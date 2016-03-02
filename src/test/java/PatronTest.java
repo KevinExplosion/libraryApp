@@ -34,4 +34,38 @@ public class PatronTest {
     Patron savedPatron = Patron.all().get(0);
     assertEquals(newPatron.getId(), savedPatron.getId());
   }
+
+  @Test
+  public void find_locatesAllInstancesOfPatronInDatabaseUsingID() {
+    Patron newPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    newPatron.save();
+    Patron savedPatron = Patron.find(newPatron.getId());
+    assertTrue(newPatron.equals(savedPatron));
+  }
+
+  @Test
+  public void updateName_updatesNameInDatabase() {
+    Patron newPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    newPatron.save();
+    newPatron.updateName("John");
+    assertEquals(Patron.all().get(0).getName(), ("John"));
+  }
+
+  @Test
+  public void updateDueDate_updatesDueDateInDatabase() {
+    Patron newPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    newPatron.save();
+    newPatron.updateDueDate("3/15/2016");
+    assertEquals(Patron.all().get(0).getDueDate(), ("3/15/2016"));
+  }
+
+  @Test
+  public void updateIdTitleAuthor_updatesIdTitleAuthorInDatabase() {
+    Patron newPatron = new Patron("Bob Smith", "3/2/2016", 2);
+    newPatron.save();
+    newPatron.updateIdTitleAuthor(3);
+    assertEquals(Patron.all().get(0).getIdTitleAuthor(), 3);
+  }
+
+
 }

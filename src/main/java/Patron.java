@@ -57,4 +57,45 @@ public class Patron {
           .getKey();
     }
   }
+
+  public static Patron find(int id) {
+    String sql = "SELECT id, patron_name, due_date, id_title_author FROM patron WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      Patron patron = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Patron.class);
+      return patron;
+    }
+  }
+
+  public void updateName(String patron_name) {
+    String sql = "UPDATE patron SET patron_name = :patron_name WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("patron_name", patron_name)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void updateDueDate(String due_date) {
+    String sql = "UPDATE patron SET due_date = :due_date WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("due_date", due_date)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void updateIdTitleAuthor(int id_title_author) {
+    String sql = "UPDATE patron SET id_title_author = :id_title_author WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("id_title_author", id_title_author)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
 }
