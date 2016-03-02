@@ -58,4 +58,30 @@ public class AuthorTest {
     newAuthor.delete();
     assertEquals(Author.all().size(), 0);
   }
+
+  @Test
+  public void addTitle_addsTitlesToAuthor() {
+    Author newAuthor = new Author("Dr. Seuss");
+    newAuthor.save();
+
+    Title newTitle = new Title("Green Eggs and Ham");
+    newTitle.save();
+
+    newAuthor.addTitle(newTitle);
+    Title savedTitle = newAuthor.getTitles().get(0);
+    assertTrue(newTitle.equals(savedTitle));
+  }
+
+  @Test
+  public void getTitles_getsTitlesAuthorsByAuthorID() {
+    Title newTitle = new Title("Green Eggs and Ham");
+    newTitle.save();
+
+    Author newAuthor = new Author("Dr. Seuss");
+    newAuthor.save();
+
+    newAuthor.addTitle(newTitle);
+    List savedTitles = newAuthor.getTitles();
+    assertEquals(savedTitles.size(), 1);
+  }
 }

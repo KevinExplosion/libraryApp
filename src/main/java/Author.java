@@ -72,4 +72,28 @@ public class Author {
        .executeUpdate();
     }
   }
+
+  public void addTitle (Title title) {
+    String sql = "INSERT INTO title_author (id_title, id_author) VALUES (:id_title, :id_author)";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("id_title", title.getId())
+      .addParameter("id_author", this.getId())
+         .executeUpdate();
+    }
+  }
+
+  public List<Title> getTitles() {
+    try(Connection con = DB.sql2o.open()) {
+
+      String sql = "SELECT title.* FROM author " +
+      "JOIN title_author ON (author.id = title_author.id_author) " +
+      "JOIN title ON (title_author.id_title = title.id) " +
+      "WHERE author.id = :id";
+      List<Title> titles = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Title.class);
+      return titles;
+    }
+  }
 }
