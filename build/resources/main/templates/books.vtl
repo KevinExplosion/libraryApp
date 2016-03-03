@@ -23,14 +23,14 @@ titles.vtl
 
     <h3>Book Titles</h3>
     #foreach ($title in $titles)
-    <li><a href="/books/title/$title.getId()">$title.getTitle()</a></li>
+    <li><a href="/title/$title.getId()">$title.getTitle()</a></li>
     #end
   </div>
 
   <div class="col-sm-6">
     <h3>Author List</h3>
     #foreach ($author in $authors)
-    <li><a href="/books/author/$author.getId()">$author.getAuthor()</a></li>
+    <li><a href="/author/$author.getId()">$author.getAuthor()</a></li>
     #end
   </div>
 </div>
