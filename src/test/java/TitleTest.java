@@ -14,14 +14,14 @@ public class TitleTest {
 
   @Test
   public void equals_returnsTrueIfTitlesAreTheSame() {
-    Title firstTitle = new Title("Hop on Pop");
-    Title secondTitle = new Title("Hop on Pop");
+    Title firstTitle = new Title("Hop on Pop", 2);
+    Title secondTitle = new Title("Hop on Pop", 2);
     assertTrue(firstTitle.equals(secondTitle));
   }
 
   @Test
   public void save_addsInstaceOfTitleToDatabase() {
-    Title newTitle = new Title("Hop on Pop");
+    Title newTitle = new Title("Hop on Pop", 2);
     newTitle.save();
     Title savedTitle = Title.all().get(0);
     assertTrue(newTitle.equals(savedTitle));
@@ -29,7 +29,7 @@ public class TitleTest {
 
   @Test
   public void save_assignsIdToObject() {
-    Title newTitle = new Title("Hop on Pop");
+    Title newTitle = new Title("Hop on Pop", 2);
     newTitle.save();
     Title savedTitle = Title.all().get(0);
     assertEquals(newTitle.getId(), savedTitle.getId());
@@ -37,7 +37,7 @@ public class TitleTest {
 
   @Test
   public void find_locatesAllInstancesOfTitleInDatabaseUsingID() {
-    Title newTitle = new Title("Hop on Pop");
+    Title newTitle = new Title("Hop on Pop", 2);
     newTitle.save();
     Title savedTitle = Title.find(newTitle.getId());
     assertTrue(newTitle.equals(savedTitle));
@@ -45,15 +45,23 @@ public class TitleTest {
 
   @Test
   public void updateTitle_updatesTitleInDatabase() {
-    Title newTitle = new Title("Hop on Pop");
+    Title newTitle = new Title("Hop on Pop", 2);
     newTitle.save();
     newTitle.updateTitle("Green Eggs and Ham");
     assertEquals(Title.all().get(0).getTitle(), ("Green Eggs and Ham"));
   }
 
   @Test
+  public void updateCopyId_updatesCopyIdInDatabase() {
+    Title newTitle = new Title("Hop on Pop", 2);
+    newTitle.save();
+    newTitle.updateCopyId(3);
+    assertEquals(Title.all().get(0).getCopyId(), 3);
+  }
+
+  @Test
   public void deleteTitle_deleteTitleObject() {
-    Title newTitle = new Title("Hop on Pop");
+    Title newTitle = new Title("Hop on Pop", 2);
     newTitle.save();
     newTitle.delete();
     assertEquals(Title.all().size(), 0);
@@ -61,7 +69,7 @@ public class TitleTest {
 
   @Test
   public void addAuthor_addsAuthorsToTitle() {
-    Title newTitle = new Title("Green Eggs and Ham");
+    Title newTitle = new Title("Green Eggs and Ham", 3);
     newTitle.save();
 
     Author newAuthor = new Author("Dr. Suess");
@@ -77,7 +85,7 @@ public class TitleTest {
     Author newAuthor = new Author("Dr. Seuss");
     newAuthor.save();
 
-    Title newTitle = new Title("Green Eggs and Ham");
+    Title newTitle = new Title("Green Eggs and Ham", 3);
     newTitle.save();
 
     newTitle.addAuthor(newAuthor);

@@ -26,7 +26,8 @@ public class App {
     post("/title", (request, response) -> { //POSTS TITLES TO BOOKS PAGE
       HashMap model = new HashMap();
       String title = request.queryParams("newBookTitle");
-      Title newTitle = new Title(title);
+      int copy_id = Integer.parseInt(request.queryParams("copyId"));
+      Title newTitle = new Title(title, copy_id);
       newTitle.save();
       response.redirect("/books");
       return null;
@@ -83,6 +84,34 @@ public class App {
       response.redirect("/author/" + authorId);
       return null;
     });
+
+    get("/patrons", (request,response) -> { //PATRONS PAGE W/ FORM TO ENTER PATRON NAME
+      HashMap model = new HashMap();
+      model.put("patrons", Patron.all());
+      model.put("template", "templates/patrons.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/patrons", (request, response) -> { //POSTS PATRONS TO PATRON PAGE
+      HashMap model = new HashMap();
+      String patron = request.queryParams("newPatron");
+      Patron newPatron = new Patron(patron);
+      newPatron.save();
+      response.redirect("/patrons");
+      return null;
+    });
+
+
+    get("/patrons/:id", (request, response) -> {
+      HashMap model = new HashMap();
+      int id = Integer.parseInt(request.params("id"));
+      Patron patron = Patron.find(id);
+      model.put("patron", patron);
+      model.put("allTitles", Title.all());
+      model.put("template", "templates/patron.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 //
 //     get("/result", (request, response) -> {
 //       String textInput = request.queryParams("textInput");

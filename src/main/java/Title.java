@@ -4,6 +4,7 @@ import java.util.List;
 public class Title {
   private int id;
   private String title;
+  private int copy_id;
 
   public int getId() {
     return id;
@@ -13,12 +14,17 @@ public class Title {
     return title;
   }
 
-  public Title (String title) {
+  public int getCopyId() {
+    return copy_id;
+  }
+
+  public Title (String title, int copy_id) {
     this.title = title;
+    this.copy_id = copy_id;
   }
 
   public static List<Title> all() {
-    String sql = "SELECT id, title FROM title ORDER BY title";
+    String sql = "SELECT id, title, copy_id FROM title ORDER BY title";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Title.class);
     }
@@ -30,12 +36,13 @@ public class Title {
       return false;
     } else {
       Title newTitle = (Title) otherTitle;
-      return this.getTitle().equals(newTitle.getTitle());
+      return this.getTitle().equals(newTitle.getTitle()) &&
+             this.getCopyId() == newTitle.getCopyId();
     }
   }
 
   public void save() {
-    String sql = "INSERT INTO title (title) VALUES (:title)";
+    String sql = "INSERT INTO title (title, copy_id) VALUES (:title, :copy_id)";
     try (Connection con = DB.sql2o.open()) {
       this.id = (int) con.createQuery(sql, true)
           .addParameter("title", title)
@@ -45,7 +52,7 @@ public class Title {
   }
 
   public static Title find(int id) {
-    String sql = "SELECT id, title FROM title WHERE id = :id";
+    String sql = "SELECT id, title, copy_id FROM title WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       Title title = con.createQuery(sql)
       .addParameter("id", id)
@@ -64,11 +71,11 @@ public class Title {
     }
   }
 
-  public void updateDueDate(String due_date) {
-    String sql = "UPDATE title SET due_date = :due_date WHERE id = :id";
+  public void updateCopyId(String copy_id) {
+    String sql = "UPDATE title SET copy_id = :copy_id WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
-      .addParameter("due_date", due_date)
+      .addParameter("copy_id", copy_id)
       .addParameter("id", id)
       .executeUpdate();
     }

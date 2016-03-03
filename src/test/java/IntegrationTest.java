@@ -31,6 +31,13 @@ public class IntegrationTest extends FluentTest {
   //   assertThat(pageSource()).contains("Dr. Suess");
   // }
 
+  // @TEST
+  // public void patronFormInputsNewPatron() {
+  //   goTo("http://localhost:4567/patrons");
+  //   fill("#newPatron").with("Bob Smith");
+  //   submit(".btn");
+  //   assertThat(pageSource()).contains("Bob Smith");
+  // }
 
 
 }
