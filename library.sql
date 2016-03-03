@@ -103,7 +103,8 @@ ALTER SEQUENCE catalog_id_seq OWNED BY catalog.id;
 CREATE TABLE patron (
     id integer NOT NULL,
     due_date character varying,
-    id_title_author integer
+    id_title_author integer,
+    patron_name character varying
 );
 
 
@@ -237,6 +238,9 @@ ALTER TABLE ONLY title_author ALTER COLUMN id SET DEFAULT nextval('title_author_
 --
 
 COPY author (id, author) FROM stdin;
+1	Dr. Seuss
+2	Michael Chricton
+3	Stephen King
 \.
 
 
@@ -244,7 +248,7 @@ COPY author (id, author) FROM stdin;
 -- Name: author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('author_id_seq', 1, false);
+SELECT pg_catalog.setval('author_id_seq', 3, true);
 
 
 --
@@ -266,7 +270,7 @@ SELECT pg_catalog.setval('catalog_id_seq', 1, false);
 -- Data for Name: patron; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY patron (id, due_date, id_title_author) FROM stdin;
+COPY patron (id, due_date, id_title_author, patron_name) FROM stdin;
 \.
 
 
@@ -282,6 +286,21 @@ SELECT pg_catalog.setval('patron_id_seq', 1, false);
 --
 
 COPY title (id, title) FROM stdin;
+1	"Green Eggs and Ham"
+2	\N
+3	Hop on Pop
+4	Hop on Pop
+5	\N
+6	\N
+7	\N
+8	\N
+9	\N
+10	\N
+11	\N
+12	Jurassic Park
+13	It
+14	The Langoliers
+15	"The Stand"
 \.
 
 
@@ -290,6 +309,10 @@ COPY title (id, title) FROM stdin;
 --
 
 COPY title_author (id, id_title, id_author) FROM stdin;
+1	1	1
+2	13	3
+3	14	3
+4	15	3
 \.
 
 
@@ -297,14 +320,14 @@ COPY title_author (id, id_title, id_author) FROM stdin;
 -- Name: title_author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('title_author_id_seq', 1, false);
+SELECT pg_catalog.setval('title_author_id_seq', 4, true);
 
 
 --
 -- Name: title_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('title_id_seq', 1, false);
+SELECT pg_catalog.setval('title_id_seq', 15, true);
 
 
 --

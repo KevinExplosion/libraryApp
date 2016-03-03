@@ -62,6 +62,27 @@ public class App {
       response.redirect("/title/" + titleId);
       return null;
     });
+
+    get("/author/:id", (request, response) -> {
+      HashMap model = new HashMap();
+      int id = Integer.parseInt(request.params("id"));
+      Author author = Author.find(id);
+      model.put("author", author);
+      model.put("allTitles", Title.all());
+      model.put("template", "templates/author.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/author/:id", (request, response) -> {
+      HashMap model = new HashMap();
+      int authorId = Integer.parseInt(request.queryParams("authorId"));
+      int titleId = Integer.parseInt(request.queryParams("titleName"));
+      Title title = Title.find(titleId);
+      Author author = Author.find(authorId);
+      author.addTitle(title);
+      response.redirect("/author/" + authorId);
+      return null;
+    });
 //
 //     get("/result", (request, response) -> {
 //       String textInput = request.queryParams("textInput");
