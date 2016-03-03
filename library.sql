@@ -97,18 +97,84 @@ ALTER SEQUENCE catalog_id_seq OWNED BY catalog.id;
 
 
 --
+-- Name: copies; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE copies (
+    id integer NOT NULL,
+    copies integer,
+    due_date character varying
+);
+
+
+ALTER TABLE copies OWNER TO "Guest";
+
+--
+-- Name: copies_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE copies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE copies_id_seq OWNER TO "Guest";
+
+--
+-- Name: copies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE copies_id_seq OWNED BY copies.id;
+
+
+--
 -- Name: patron; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE patron (
     id integer NOT NULL,
-    due_date character varying,
-    id_title_author integer,
     patron_name character varying
 );
 
 
 ALTER TABLE patron OWNER TO "Guest";
+
+--
+-- Name: patron_copy; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE patron_copy (
+    id integer NOT NULL,
+    id_patron integer,
+    id_copy integer
+);
+
+
+ALTER TABLE patron_copy OWNER TO "Guest";
+
+--
+-- Name: patron_copy_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE patron_copy_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE patron_copy_id_seq OWNER TO "Guest";
+
+--
+-- Name: patron_copy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE patron_copy_id_seq OWNED BY patron_copy.id;
+
 
 --
 -- Name: patron_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
@@ -216,7 +282,21 @@ ALTER TABLE ONLY catalog ALTER COLUMN id SET DEFAULT nextval('catalog_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
+ALTER TABLE ONLY copies ALTER COLUMN id SET DEFAULT nextval('copies_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
 ALTER TABLE ONLY patron ALTER COLUMN id SET DEFAULT nextval('patron_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY patron_copy ALTER COLUMN id SET DEFAULT nextval('patron_copy_id_seq'::regclass);
 
 
 --
@@ -238,9 +318,9 @@ ALTER TABLE ONLY title_author ALTER COLUMN id SET DEFAULT nextval('title_author_
 --
 
 COPY author (id, author) FROM stdin;
-1	Dr. Seuss
-2	Michael Chricton
-3	Stephen King
+4	Michael Crichton
+5	Dr. Suess
+6	Carl Macek
 \.
 
 
@@ -248,7 +328,7 @@ COPY author (id, author) FROM stdin;
 -- Name: author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('author_id_seq', 3, true);
+SELECT pg_catalog.setval('author_id_seq', 6, true);
 
 
 --
@@ -267,18 +347,50 @@ SELECT pg_catalog.setval('catalog_id_seq', 1, false);
 
 
 --
+-- Data for Name: copies; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY copies (id, copies, due_date) FROM stdin;
+\.
+
+
+--
+-- Name: copies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('copies_id_seq', 1, false);
+
+
+--
 -- Data for Name: patron; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY patron (id, due_date, id_title_author, patron_name) FROM stdin;
+COPY patron (id, patron_name) FROM stdin;
+1	Mattison, Kevin
+2	Mattison, Kevin
 \.
+
+
+--
+-- Data for Name: patron_copy; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY patron_copy (id, id_patron, id_copy) FROM stdin;
+\.
+
+
+--
+-- Name: patron_copy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('patron_copy_id_seq', 1, false);
 
 
 --
 -- Name: patron_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('patron_id_seq', 1, false);
+SELECT pg_catalog.setval('patron_id_seq', 2, true);
 
 
 --
@@ -286,21 +398,14 @@ SELECT pg_catalog.setval('patron_id_seq', 1, false);
 --
 
 COPY title (id, title) FROM stdin;
-1	"Green Eggs and Ham"
-2	\N
-3	Hop on Pop
-4	Hop on Pop
-5	\N
-6	\N
-7	\N
-8	\N
-9	\N
-10	\N
-11	\N
-12	Jurassic Park
-13	It
-14	The Langoliers
-15	"The Stand"
+16	Jurassic Park
+17	Congo
+18	Air Frame
+19	Robotech
+20	The Sentinels
+21	Hop on Pop
+22	One FIsh, Two Fish
+23	Green Eggs and Ham
 \.
 
 
@@ -313,6 +418,14 @@ COPY title_author (id, id_title, id_author) FROM stdin;
 2	13	3
 3	14	3
 4	15	3
+5	19	6
+6	20	6
+7	18	4
+8	17	4
+9	16	4
+10	23	5
+11	21	5
+12	22	5
 \.
 
 
@@ -320,14 +433,14 @@ COPY title_author (id, id_title, id_author) FROM stdin;
 -- Name: title_author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('title_author_id_seq', 4, true);
+SELECT pg_catalog.setval('title_author_id_seq', 12, true);
 
 
 --
 -- Name: title_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('title_id_seq', 15, true);
+SELECT pg_catalog.setval('title_id_seq', 23, true);
 
 
 --
@@ -344,6 +457,22 @@ ALTER TABLE ONLY author
 
 ALTER TABLE ONLY catalog
     ADD CONSTRAINT catalog_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: copies_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY copies
+    ADD CONSTRAINT copies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patron_copy_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY patron_copy
+    ADD CONSTRAINT patron_copy_pkey PRIMARY KEY (id);
 
 
 --
