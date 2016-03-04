@@ -1,23 +1,27 @@
 patron.vtl
 
-
 <h2>$patron.getName()</h2>
 
 #if($patron.getTitles())
-  #foreach ($author in $title.getAuthors())
-  <li><a href="/author/$author.getId()">$author.getAuthor()</a></li>
+  #foreach ($copy in $title.getCopies())
+  <li><a href="/title/$title.getId()">$title.getName()</a></li>
   #end
 #end
 
-<form action="/title/$title.getId()" method="post">
+<form action="/patrons/$patron.getId()" method="post">
 
-  <input id="copyId" name="copyId" type="hidden" value="$copies.getId()">
+  <input id="patronId" name="patronId" type="hidden" value="$copies.getId()">
 
-  <label for="authorName">Who Wrote This?</label>
-  <select id="authorName" name="authorName" type="text">
-    #foreach ($author in $allAuthors)
-    <option value="$author.getId()">$author.getAuthor()</option>
+  <label for="bookTitle">Assign a title to a customer for checkout</label>
+  <select id="bookTitle" name="bookTitle" type="text">
+    #foreach ($title in $allTitles)
+    <option value="$title.getId()">$title.getName()</option>
     #end
   </select>
-  <button type="submit">Assign Author</button>
+  <button type="submit">Checkout Book</button>
 </form>
+
+<br>
+View <a href="/books">books</a> by Title
+<br>
+Return to <a href="/">Main Page</a>

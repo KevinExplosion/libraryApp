@@ -5,6 +5,7 @@ public class Copies {
   private int id;
   private int copies;
   private String due_date;
+  public int title_id;
 
   public int getId() {
     return id;
@@ -18,13 +19,18 @@ public class Copies {
     return due_date;
   }
 
-  public Copies (int copies, String due_date) {
+  public int getTitleId() {
+    return title_id;
+  }
+
+  public Copies (int copies, String due_date, int title_id) {
     this.copies = copies;
     this.due_date = due_date;
+    this.title_id = title_id;
   }
 
   public static List<Copies> all() {
-    String sql = "SELECT id, copies, due_date FROM copies";
+    String sql = "SELECT id, copies, due_date, title_id FROM copies";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Copies.class);
     }
@@ -37,23 +43,25 @@ public class Copies {
     } else {
       Copies newCopies = (Copies) otherCopies;
       return this.getCopies() == (newCopies.getCopies()) &&
-              this.getDueDate().equals(newCopies.getDueDate());
+              this.getDueDate().equals(newCopies.getDueDate()) &&
+              this.getTitleId() == (newCopies.getTitleId());
     }
   }
 
   public void save() {
-    String sql = "INSERT INTO copies (copies, due_date) VALUES (:copies, :due_date)";
+    String sql = "INSERT INTO copies (copies, due_date, title_id) VALUES (:copies, :due_date, :title_id)";
     try (Connection con = DB.sql2o.open()) {
       this.id = (int) con.createQuery(sql, true)
           .addParameter("copies", copies)
           .addParameter("due_date", due_date)
+          .addParameter("title_id", title_id)
           .executeUpdate()
           .getKey();
     }
   }
 
   public static Copies find(int id) {
-    String sql = "SELECT id, copies, due_date FROM copies WHERE id = :id";
+    String sql = "SELECT id, copies, due_date, title_id FROM copies WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       Copies copies = con.createQuery(sql)
       .addParameter("id", id)
@@ -72,16 +80,26 @@ public class Copies {
     }
   }
 
-  public void updateDueDate(int copies) {
-    String sql = "UPDATE copies SET copies = :copies, due_date = :due_date WHERE id = :id";
+  public void updateDueDate(String due_date) {
+    String sql = "UPDATE copies SET due_date = :due_date WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
-      .addParameter("copies", copies)
       .addParameter("due_date", due_date)
       .addParameter("id", id)
       .executeUpdate();
     }
   }
+
+  public void updateTitleId(int title_id) {
+    String sql = "UPDATE copies SET title_id = :title_id WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("title_id", title_id)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
 
   public void delete() {
     String sql = "DELETE FROM copies WHERE id = :id";

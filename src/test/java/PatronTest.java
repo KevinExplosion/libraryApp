@@ -80,7 +80,7 @@ public class PatronTest {
     Patron newPatron = new Patron("Bob Smith");
     newPatron.save();
 
-    Copies newCopies = new Copies(2, "3/12/2016");
+    Copies newCopies = new Copies(2, "3/12/2016", 2);
     newCopies.save();
 
     newPatron.addCopies(newCopies);
@@ -90,7 +90,7 @@ public class PatronTest {
 
   @Test
   public void getCopies_getsCopiesPatronsByPatronID() {
-    Copies newCopies = new Copies(2, "3/12/2016");
+    Copies newCopies = new Copies(2, "3/12/2016", 2);
     newCopies.save();
 
     Patron newPatron = new Patron("Bob Smith");

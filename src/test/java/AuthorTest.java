@@ -64,7 +64,7 @@ public class AuthorTest {
     Author newAuthor = new Author("Dr. Seuss");
     newAuthor.save();
 
-    Title newTitle = new Title("Green Eggs and Ham", 2);
+    Title newTitle = new Title("Green Eggs and Ham");
     newTitle.save();
 
     newAuthor.addTitle(newTitle);
@@ -74,7 +74,7 @@ public class AuthorTest {
 
   @Test
   public void getTitles_getsTitlesAuthorsByAuthorID() {
-    Title newTitle = new Title("Green Eggs and Ham", 2);
+    Title newTitle = new Title("Green Eggs and Ham");
     newTitle.save();
 
     Author newAuthor = new Author("Dr. Seuss");

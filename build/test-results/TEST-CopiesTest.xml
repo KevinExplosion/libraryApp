@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CopiesTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-03-03T18:58:23" hostname="epicodus-59.local" time="0.096">
+<testsuite name="CopiesTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-04T00:03:40" hostname="epicodus-59.local" time="0.131">
   <properties/>
-  <testcase name="save_DueDateToObject" classname="CopiesTest" time="0.015"/>
-  <testcase name="deleteCopies_deleteCopiesObject" classname="CopiesTest" time="0.016"/>
-  <testcase name="equals_returnsTrueIfCopiessAreTheSame" classname="CopiesTest" time="0.006"/>
-  <testcase name="all_emptyAtFirst" classname="CopiesTest" time="0.01"/>
-  <testcase name="updateCopies_updatesCopiesInDatabase" classname="CopiesTest" time="0.017"/>
-  <testcase name="find_locatesAllInstancesOfCopiesInDatabaseUsingID" classname="CopiesTest" time="0.017"/>
+  <testcase name="updateDueDate_updatesDueDateInDatabase" classname="CopiesTest" time="0.019"/>
+  <testcase name="updateTitleId_updatesTitleIdInDatabase" classname="CopiesTest" time="0.018"/>
+  <testcase name="save_DueDateToObject" classname="CopiesTest" time="0.014"/>
+  <testcase name="deleteCopies_deleteCopiesObject" classname="CopiesTest" time="0.017"/>
+  <testcase name="equals_returnsTrueIfCopiessAreTheSame" classname="CopiesTest" time="0.004"/>
+  <testcase name="all_emptyAtFirst" classname="CopiesTest" time="0.009"/>
+  <testcase name="updateCopies_updatesCopiesInDatabase" classname="CopiesTest" time="0.018"/>
+  <testcase name="find_locatesAllInstancesOfCopiesInDatabaseUsingID" classname="CopiesTest" time="0.014"/>
   <testcase name="save_assignsIdToObject" classname="CopiesTest" time="0.014"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

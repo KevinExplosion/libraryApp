@@ -4,7 +4,6 @@ import java.util.List;
 public class Title {
   private int id;
   private String title;
-  private int copy_id;
 
   public int getId() {
     return id;
@@ -14,17 +13,12 @@ public class Title {
     return title;
   }
 
-  public int getCopyId() {
-    return copy_id;
-  }
-
-  public Title (String title, int copy_id) {
+  public Title (String title) {
     this.title = title;
-    this.copy_id = copy_id;
   }
 
   public static List<Title> all() {
-    String sql = "SELECT id, title, copy_id FROM title ORDER BY title";
+    String sql = "SELECT id, title FROM title ORDER BY title";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Title.class);
     }
@@ -36,13 +30,12 @@ public class Title {
       return false;
     } else {
       Title newTitle = (Title) otherTitle;
-      return this.getTitle().equals(newTitle.getTitle()) &&
-             this.getCopyId() == newTitle.getCopyId();
+      return this.getTitle().equals(newTitle.getTitle());
     }
   }
 
   public void save() {
-    String sql = "INSERT INTO title (title, copy_id) VALUES (:title, :copy_id)";
+    String sql = "INSERT INTO title (title) VALUES (:title)";
     try (Connection con = DB.sql2o.open()) {
       this.id = (int) con.createQuery(sql, true)
           .addParameter("title", title)
@@ -52,7 +45,7 @@ public class Title {
   }
 
   public static Title find(int id) {
-    String sql = "SELECT id, title, copy_id FROM title WHERE id = :id";
+    String sql = "SELECT id, title FROM title WHERE id = :id";
     try(Connection con = DB.sql2o.open()) {
       Title title = con.createQuery(sql)
       .addParameter("id", id)
@@ -66,16 +59,6 @@ public class Title {
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
       .addParameter("title", title)
-      .addParameter("id", id)
-      .executeUpdate();
-    }
-  }
-
-  public void updateCopyId(String copy_id) {
-    String sql = "UPDATE title SET copy_id = :copy_id WHERE id = :id";
-    try(Connection con = DB.sql2o.open()) {
-      con.createQuery(sql)
-      .addParameter("copy_id", copy_id)
       .addParameter("id", id)
       .executeUpdate();
     }

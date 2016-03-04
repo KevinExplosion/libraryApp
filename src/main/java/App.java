@@ -26,8 +26,7 @@ public class App {
     post("/title", (request, response) -> { //POSTS TITLES TO BOOKS PAGE
       HashMap model = new HashMap();
       String title = request.queryParams("newBookTitle");
-      int copy_id = Integer.parseInt(request.queryParams("copyId"));
-      Title newTitle = new Title(title, copy_id);
+      Title newTitle = new Title(title);
       newTitle.save();
       response.redirect("/books");
       return null;
@@ -112,19 +111,18 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-//
-//     get("/result", (request, response) -> {
-//       String textInput = request.queryParams("textInput");
-//
-//       //call business logic functions here
-//       String result = textInput;
-//
-//       HashMap model = new HashMap();
-//       model.put("template", "templates/output.vtl");
-//       model.put("result", String.format(result));
-//       return new ModelAndView(model, layout);
-//     }, new VelocityTemplateEngine());
-//       //additional pages would go here
+    post("/patrons/:id", (request, response) -> {
+      HashMap model = new HashMap();
+      int patronId = Integer.parseInt(request.params("id"));
+      int copyId = Integer.parseInt(request.queryParams("copyId"));
+      int titleId = Integer.parseInt(request.queryParams("bookTitle"));
+      Copies copies = Copies.find(copyId);
+      Patron newPatron = Patron.find(patronId);
+      Title title = Title.find(titleId);
+      newPatron.addCopies(copies);
+      response.redirect("/patrons/" + patronId);
+      return null;
+    });
   }
 //
 //   //public static 'Returntype' 'FuncName' (Paramtype param) {}  //first business logic function
