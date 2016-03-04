@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TitleTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-04T00:03:41" hostname="epicodus-59.local" time="0.136">
+<testsuite name="TitleTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-04T00:14:55" hostname="epicodus-59.local" time="0.143">
   <properties/>
-  <testcase name="deleteTitle_deleteTitleObject" classname="TitleTest" time="0.016"/>
+  <testcase name="deleteTitle_deleteTitleObject" classname="TitleTest" time="0.017"/>
   <testcase name="save_addsInstaceOfTitleToDatabase" classname="TitleTest" time="0.014"/>
-  <testcase name="addAuthor_addsAuthorsToTitle" classname="TitleTest" time="0.024"/>
-  <testcase name="all_emptyAtFirst" classname="TitleTest" time="0.008"/>
+  <testcase name="addAuthor_addsAuthorsToTitle" classname="TitleTest" time="0.026"/>
+  <testcase name="all_emptyAtFirst" classname="TitleTest" time="0.01"/>
   <testcase name="find_locatesAllInstancesOfTitleInDatabaseUsingID" classname="TitleTest" time="0.014"/>
-  <testcase name="save_assignsIdToObject" classname="TitleTest" time="0.014"/>
+  <testcase name="save_assignsIdToObject" classname="TitleTest" time="0.015"/>
   <testcase name="getAuthors_getsAuthorsTitlesByTitleID" classname="TitleTest" time="0.023"/>
-  <testcase name="updateTitle_updatesTitleInDatabase" classname="TitleTest" time="0.017"/>
-  <testcase name="equals_returnsTrueIfTitlesAreTheSame" classname="TitleTest" time="0.006"/>
+  <testcase name="updateTitle_updatesTitleInDatabase" classname="TitleTest" time="0.019"/>
+  <testcase name="equals_returnsTrueIfTitlesAreTheSame" classname="TitleTest" time="0.005"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

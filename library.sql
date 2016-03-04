@@ -103,7 +103,8 @@ ALTER SEQUENCE catalog_id_seq OWNED BY catalog.id;
 CREATE TABLE copies (
     id integer NOT NULL,
     copies integer,
-    due_date character varying
+    due_date character varying,
+    title_id integer
 );
 
 
@@ -321,6 +322,7 @@ COPY author (id, author) FROM stdin;
 4	Michael Crichton
 5	Dr. Suess
 6	Carl Macek
+7	Stephen King
 \.
 
 
@@ -328,7 +330,7 @@ COPY author (id, author) FROM stdin;
 -- Name: author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('author_id_seq', 6, true);
+SELECT pg_catalog.setval('author_id_seq', 7, true);
 
 
 --
@@ -350,7 +352,8 @@ SELECT pg_catalog.setval('catalog_id_seq', 1, false);
 -- Data for Name: copies; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY copies (id, copies, due_date) FROM stdin;
+COPY copies (id, copies, due_date, title_id) FROM stdin;
+1	1	01/19/2018	2
 \.
 
 
@@ -358,7 +361,7 @@ COPY copies (id, copies, due_date) FROM stdin;
 -- Name: copies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('copies_id_seq', 1, false);
+SELECT pg_catalog.setval('copies_id_seq', 1, true);
 
 
 --
@@ -368,6 +371,7 @@ SELECT pg_catalog.setval('copies_id_seq', 1, false);
 COPY patron (id, patron_name) FROM stdin;
 1	Mattison, Kevin
 2	Mattison, Kevin
+3	Smith, Bob
 \.
 
 
@@ -390,7 +394,7 @@ SELECT pg_catalog.setval('patron_copy_id_seq', 1, false);
 -- Name: patron_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('patron_id_seq', 2, true);
+SELECT pg_catalog.setval('patron_id_seq', 3, true);
 
 
 --
@@ -406,6 +410,8 @@ COPY title (id, title) FROM stdin;
 21	Hop on Pop
 22	One FIsh, Two Fish
 23	Green Eggs and Ham
+25	It
+26	It
 \.
 
 
@@ -426,6 +432,9 @@ COPY title_author (id, id_title, id_author) FROM stdin;
 10	23	5
 11	21	5
 12	22	5
+13	26	7
+14	25	7
+15	18	6
 \.
 
 
@@ -433,14 +442,14 @@ COPY title_author (id, id_title, id_author) FROM stdin;
 -- Name: title_author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('title_author_id_seq', 12, true);
+SELECT pg_catalog.setval('title_author_id_seq', 15, true);
 
 
 --
 -- Name: title_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('title_id_seq', 23, true);
+SELECT pg_catalog.setval('title_id_seq', 26, true);
 
 
 --

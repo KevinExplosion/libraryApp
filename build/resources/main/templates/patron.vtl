@@ -2,20 +2,20 @@ patron.vtl
 
 <h2>$patron.getName()</h2>
 
-#if($patron.getTitles())
-  #foreach ($copy in $title.getCopies())
-  <li><a href="/title/$title.getId()">$title.getName()</a></li>
+#if($patron.getCopies())
+  #foreach ($copy in $copies.getCopies())
+  <li><a href="/copy/$copies.getId()">$copies.getCopies()</a></li>
   #end
 #end
 
 <form action="/patrons/$patron.getId()" method="post">
 
-  <input id="patronId" name="patronId" type="hidden" value="$copies.getId()">
+  <input id="patronId" name="patronId" type="hidden" value="$patron.getId()">
 
-  <label for="bookTitle">Assign a title to a customer for checkout</label>
-  <select id="bookTitle" name="bookTitle" type="text">
-    #foreach ($title in $allTitles)
-    <option value="$title.getId()">$title.getName()</option>
+  <label for="copy">Assign a title to a customer for checkout</label>
+  <select id="copy" name="copy" type="text">
+    #foreach ($copy in $allCopies)
+    <option value="$copies.getId()">$copies.getCopies()</option>
     #end
   </select>
   <button type="submit">Checkout Book</button>

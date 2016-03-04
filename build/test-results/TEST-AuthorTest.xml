@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AuthorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-04T00:03:40" hostname="epicodus-59.local" time="0.245">
+<testsuite name="AuthorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-03-04T00:14:53" hostname="epicodus-59.local" time="0.251">
   <properties/>
-  <testcase name="updateAuthor_updatesAuthorInDatabase" classname="AuthorTest" time="0.114"/>
-  <testcase name="all_emptyAtFirst" classname="AuthorTest" time="0.01"/>
-  <testcase name="save_addsInstaceOfAuthorToDatabase" classname="AuthorTest" time="0.016"/>
-  <testcase name="find_locatesAllInstancesOfAuthorInDatabaseUsingID" classname="AuthorTest" time="0.016"/>
+  <testcase name="updateAuthor_updatesAuthorInDatabase" classname="AuthorTest" time="0.117"/>
+  <testcase name="all_emptyAtFirst" classname="AuthorTest" time="0.011"/>
+  <testcase name="save_addsInstaceOfAuthorToDatabase" classname="AuthorTest" time="0.015"/>
+  <testcase name="find_locatesAllInstancesOfAuthorInDatabaseUsingID" classname="AuthorTest" time="0.015"/>
   <testcase name="getTitles_getsTitlesAuthorsByAuthorID" classname="AuthorTest" time="0.026"/>
-  <testcase name="equals_returnsTrueIfAuthorsAreTheSame" classname="AuthorTest" time="0.006"/>
-  <testcase name="deleteAuthor_deleteAuthorObject" classname="AuthorTest" time="0.018"/>
+  <testcase name="equals_returnsTrueIfAuthorsAreTheSame" classname="AuthorTest" time="0.007"/>
+  <testcase name="deleteAuthor_deleteAuthorObject" classname="AuthorTest" time="0.019"/>
   <testcase name="save_assignsIdToObject" classname="AuthorTest" time="0.014"/>
   <testcase name="addTitle_addsTitlesToAuthor" classname="AuthorTest" time="0.024"/>
   <system-out><![CDATA[]]></system-out>

@@ -106,7 +106,7 @@ public class App {
       int id = Integer.parseInt(request.params("id"));
       Patron patron = Patron.find(id);
       model.put("patron", patron);
-      model.put("allTitles", Title.all());
+      model.put("allCopies", Copies.all());
       model.put("template", "templates/patron.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -114,11 +114,9 @@ public class App {
     post("/patrons/:id", (request, response) -> {
       HashMap model = new HashMap();
       int patronId = Integer.parseInt(request.params("id"));
-      int copyId = Integer.parseInt(request.queryParams("copyId"));
-      int titleId = Integer.parseInt(request.queryParams("bookTitle"));
+      int copyId = Integer.parseInt(request.queryParams("copy"));
       Copies copies = Copies.find(copyId);
       Patron newPatron = Patron.find(patronId);
-      Title title = Title.find(titleId);
       newPatron.addCopies(copies);
       response.redirect("/patrons/" + patronId);
       return null;
